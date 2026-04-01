@@ -1,6 +1,4 @@
 name: Build QMK firmware
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 on: [push, workflow_dispatch]
 
 jobs:
@@ -21,7 +19,7 @@ jobs:
       run : git config --global --add safe.directory '*'
 
     - name: Checkout QMK
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         repository: qmk/qmk_firmware
         submodules: recursive
