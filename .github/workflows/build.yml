@@ -28,6 +28,8 @@ jobs:
 
     - name: Checkout userspace
       uses: actions/checkout@v4
+      env:
+        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       with:
         path: users/${{ github.actor }}
 
@@ -36,6 +38,8 @@ jobs:
 
     - name: Archive firmware
       uses: actions/upload-artifact@v4
+      env:
+        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       continue-on-error: true
       with:
         name: ${{ matrix.file }}_${{ github.actor }}
