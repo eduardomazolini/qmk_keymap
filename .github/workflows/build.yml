@@ -18,39 +18,27 @@ jobs:
     steps:
 
     - name: Disable git safe directory checks
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       run : git config --global --add safe.directory '*'
 
     - name: Checkout QMK
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       uses: actions/checkout@v4
       with:
         repository: qmk/qmk_firmware
         submodules: recursive
 
     - name: Checkout userspace
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       uses: actions/checkout@v4
       with:
         path: users/${{ github.actor }}
 
     - name: Build firmware
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       run: qmk compile "users/${{ github.actor }}/${{ matrix.file }}"
 
     - name: Archive firmware
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       uses: actions/upload-artifact@v4
       continue-on-error: true
       with:
         name: ${{ matrix.file }}_${{ github.actor }}
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
         path: |
           *.hex
           *.bin
