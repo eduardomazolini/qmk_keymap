@@ -1,1 +1,3 @@
 SRC += source.c
+WS2812_DRIVER_REQUIRED = yes
+RGBLIGHT_ENABLE = yes
